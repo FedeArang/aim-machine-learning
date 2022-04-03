@@ -19,6 +19,8 @@ class Regressor(ABC):
             Le label su cui addestrare il modello.
 
         '''
+
+
         pass
 
     @abstractmethod
