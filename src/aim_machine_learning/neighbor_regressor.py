@@ -10,7 +10,7 @@ class NeighborRegressor(Regressor):
         self.status_fit=0
         super().__init__(**params)
         
-    def fit(self, X, y):
+    def fit(self, X, y): #il modello dei knn non ha bisogno di un vero è proprio fit, in quanto basa la sua predizione esclusivamente sui valori che si sono osservati nel training set
         self.X_train=X
         self.y_train=y
         
@@ -30,18 +30,18 @@ class NeighborRegressor(Regressor):
         
         for i in range(n_test):
             
-            distances=np.zeros(n_train)
+            distances=np.zeros(n_train) 
         
             for j in range(n_train):
                 
-                if X.shape[1]
-                distances[j]=self.distance(self.X_train[j, :], X_test[i, :])
+                
+                distances[j]=self.distance(self.X_train[j, :], X_test[i, :]) #per ogni sample, calcoliamo la sua distanza da ogni training set
             
            
-            indices=np.argpartition(distances ,self.k)[0:self.k]
+            indices=np.argpartition(distances ,self.k)[0:self.k] #consideriamo solo i k punti piu vicini (prendiamo gli indici)
             
                 
-            predictions[i]=np.mean(self.y_train[indices])
+            predictions[i]=np.mean(self.y_train[indices]) #la predict sara semplicemente la media tra i valori osservati nei k punti piu vicini
 
 
         return predictions

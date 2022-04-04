@@ -8,18 +8,18 @@ class Evaluator():
     
     def set_metric(self, new_metric):
         
-        if new_metric not in self.supported_metrics:
+        if new_metric not in self.supported_metrics:  #se la metrica non è tra quelle che indichiamo, alziamo un errore
             raise NameError('{} non e\' una metrica supportata'.format(new_metric))
         
         else:
-            self.current_metric=new_metric
+            self.current_metric=new_metric #altrimenti, settiamo la metrica
         
         return self 
         
     def __repr__(self):
         return 'Current metric is {}'.format(self.current_metric)
         
-    def __call__(self, y_true, y_pred):
+    def __call__(self, y_true, y_pred): #rendiamo il nostro oggetto un oggetto callable, in ogni caso restituiamo un dizionario che contiene le statistiche di interesse per la valutazione
         
         if self.current_metric=='mse':
             
